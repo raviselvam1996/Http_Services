@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 card  bg-warning">
+      <form [formGroup]="contactForm" novalidate class="mt-4">
+  
+        <div class="mb-3">
+          <label for="eid" class="form-label">Employee ID:</label>
+          <input type="text" formControlName="eid" class="form-control" />
+          <div *ngIf="!eid?.valid && (eid?.dirty || eid?.touched)" class="invalid-feedback">
+            <div [hidden]="!eid?.errors?.['required']">Employee ID is Required.....</div>
+            <div [hidden]="!eid?.errors?.['minlength']">Max length 10....</div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label for="ename" class="form-label">Employee Name:</label>
+          <input type="text" formControlName="ename" class="form-control" />
+          <div *ngIf="!ename?.valid && (ename?.dirty || ename?.touched)" class="invalid-feedback">
+            <div [hidden]="!ename?.errors?.['required']">Name is Required....</div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label for="edob" class="form-label">D.O.B:</label>
+          <input type="date" formControlName="edob" class="form-control" />
+          <div *ngIf="!edob?.valid && (edob?.dirty || edob?.touched)" class="invalid-feedback">
+            <div>Date Of Birth is Required....</div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" formControlName="email" class="form-control" />
+          <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="invalid-feedback">
+            <div [hidden]="!email?.errors?.['required']">Email is required...</div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number:</label>
+          <input type="number" formControlName="phoneNumber" class="form-control" />
+          <div *ngIf="!phoneNumber?.valid && (phoneNumber?.dirty || phoneNumber?.touched)" class="invalid-feedback">
+            <div [hidden]="!phoneNumber?.errors?.['required']">Phone Number is required.....</div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label for="esalary" class="form-label">Salary:</label>
+          <input type="number" formControlName="esalary" class="form-control" />
+          <div *ngIf="!esalary?.valid && (esalary?.dirty || esalary?.touched)" class="invalid-feedback">
+            <div [hidden]="!esalary?.errors?.['required']">Salary is required......</div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label class="form-label">Gender:</label>
+          <div class="form-check">
+            <input type="radio" value="male" formControlName="gender" class="form-check-input"> Male
+          </div>
+          <div class="form-check">
+            <input type="radio" value="female" formControlName="gender" class="form-check-input"> Female
+          </div>
+          <div *ngIf="!gender?.valid && (gender?.dirty || gender?.touched)" class="invalid-feedback">
+            <div [hidden]="!gender?.errors?.['required']">Gender is Required.......</div>
+          </div>
+        </div>
+      
+        <button type="submit" (click)="addemployee()" class="btn btn-primary btn-lg">{{editmode?'Update':'Register'}}</button>
+      
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped mt-4">
+    <thead class="thead-dark">
+      <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Salary</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of datas">
+        <td>{{data.eid}}</td>
+        <td>{{data.ename}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.phoneNumber}}</td>
+        <td>{{data.esalary}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.edob}}</td>
+        <td><button class="btn btn-primary" (click)="getperson(data.id)">Edit</button></td>
+        <td><button class="btn btn-danger" (click)="delpersons(data.id)">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
